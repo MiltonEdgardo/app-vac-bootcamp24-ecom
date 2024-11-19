@@ -6,8 +6,17 @@
 </head>
 <body>
     <p><a href="{% url 'home' %}">Home Page</a></p>
-    <p><a href="{% url 'users_list' %}">Users List</a></p>
+    <p><a href="{% url 'users:list' %}">Users List</a></p>
     <p><a href="{% url 'patients_list' %}">Patients List</a></p>
+
+    {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="POST">{% csrf_token %}
+        <p><button type="submit" >Logout</button></p>
+    </form>
+
+    {% else %}
+        <p><a href="{% url 'login' %}" >Login</a></p>
+    {% endif %}
 
     {% block content %}
 
