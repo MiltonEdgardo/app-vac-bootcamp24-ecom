@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Welcome {{user}}</h1>
+  <h1>USERS LIST</h1>
+
+<table>
+    <tr>
+      <th>USERNAME</th>
+      <th>NAME</th>
+      <th>LAST NAME</th>
+    </tr>
+
+    {% for user in users %}
+      <tr>
+        <td>{{user.username}}</td>
+
+        <td>
+          {% if user.first_name %}
+            {{user.first_name}}
+          {% else %}
+            -
+          {% endif %}
+        </td>
+        <td>
+            {{user.last_name|default:"-"}}
+        </td>
+      </tr>
+
+    {% endfor %}
+
+
+</table>
+{% endblock content %}
+
+

@@ -15,7 +15,7 @@ def home_page(request):
     return render(request, 'home_page.html', context)
 
 def users_list(request):
-    return render(request, 'users_list.html', {})
+    return render(request, 'list.html', {})
 
 def patients_list(request):
     return render(request, 'patients_list.html', {})
