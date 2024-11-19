@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Welcome {{user_authenticated}}</h1>
+
+  {% if user.is_authenticated %}
+    <h1>Welcome {{user}}</h1>
+  {% else %}
+    <p> You can login by clicking <a href="{% url 'login' %}" >HERE</a></p>
+  {% endif %}
+
   <h1>WEB PAGE HOME</h1>
 {% endblock content %}
 

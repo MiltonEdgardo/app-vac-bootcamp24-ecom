@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from django.contrib.auth import authenticate, login as login_django
+
 def home_page(request):
     name_list = [
         {"name": "Lucas", "last_name": "Duck"},
@@ -26,9 +29,29 @@ def login_page(request):
     """print("PARAMETROS GET -->", request.GET)
     username = request.GET.get("username", default = None)
     """
+
+    is_authenticated = False
+    something_go_wrong = True
+    username = ""
+
     if request.method == "POST":
         username = request.POST.get("username", default=None)
         password = request.POST.get("password", default=None)
+        user = authenticate(request, username = username, password = password)
+        is_authenticated = True
 
-    return render(request, 'login_page.html', {})
+        if user:
+            something_go_wrong = False
+            login_django(request, user)
+            return redirect('home')
+        else:
+            print("Authentication go wrong")
+
+
+    context = {
+        "is_authenticated": is_authenticated,
+        "something_go_wrong": something_go_wrong,
+        "username": username
+    }
+    return render(request, 'login_page.html', context)
 
