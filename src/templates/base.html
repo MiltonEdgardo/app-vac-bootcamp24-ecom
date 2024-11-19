@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p><a href="{% url 'home' %}">Home Page</a></p>
+    <p><a href="{% url 'users_list' %}">Users List</a></p>
+    <p><a href="{% url 'patients_list' %}">Patients List</a></p>
+
+    {% block content %}
+
+    {% endblock content %}
+
+</body>
+</html>
